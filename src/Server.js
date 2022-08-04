@@ -18,7 +18,7 @@ App.get('/', (req, res) => {
 
 // Route for getting all services from the MySQL database.
 App.get('/api/services', (req, res) => {
-    DBConnection.query(`SELECT product_name AS 'name', price, variablePrice, c.category_name AS category FROM Products JOIN ProductCategory AS c ON c.id = category WHERE product_type = 1`, (err, rows, fields) => {
+    DBConnection.query(`SELECT product_name AS 'name', price, variablePrice, consultation_required AS consultation, c.category_name AS category FROM Products JOIN ProductCategory AS c ON c.id = category WHERE product_type = 1`, (err, rows, fields) => {
         if (err) {
             // If the query hits an error, send that error back as the response.
             res.status(500).json({ error: err });
