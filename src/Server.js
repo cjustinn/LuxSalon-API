@@ -113,6 +113,23 @@ App.get("/api/location", (req, res) => {
     });
 });
 
+// Route for getting all testimonials.
+App.get('/api/testimonials', (req, res) => {
+    DBConnection.query("SELECT poster_name AS name, rating, posted, content FROM Testimonials", (err, rows) => {
+        if (err) { res.status(500).json({ error: err }); }
+        else {
+
+            if (rows.length <= 0) { res.status(200).json({ message: `There are currently no testimonials in the system.` }); }
+            else {
+
+                res.status(200).json({ message: `Successfully retrieved all testimonials.`, data: rows });
+                
+            }
+            
+        }
+    });
+});
+
 // Initialize the server.
 const PORT = process.env.PORT || 8080;
 
