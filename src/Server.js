@@ -9,6 +9,7 @@ App.use(Express.json());
 
 Dotenv.config();
 
+// Create the MySQL connection string using the connection values pulled from the environment variables.
 const DBConnection = MySQL.createConnection(`mysql://${process.env.USER}:${process.env.SQL_PASSWORD}@${process.env.HOST}/${process.env.DATABASE_NAME}?port=3306`);
 
 // Route definitions.
